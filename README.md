@@ -43,7 +43,31 @@ touch .ts3server_license_accepted
 ```
 exit
 ```
+```
+sudo nano /lib/systemd/system/ts3server.service
+```
+```
+[Unit]
+Description=Teamspeak Service
+Wants=network.target
 
+[Service]
+WorkingDirectory=/home/teamspeak
+User=teamspeak
+ExecStart=/home/teamspeak/ts3server_minimal_runscript.sh
+ExecStop=/home/teamspeak/ts3server_startscript.sh stop
+ExecReload=/home/teamspeak/ts3server_startscript.sh restart
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
+```
+```
+sudo systemctl daemon-reload
+sudo systemctl enable --now ts3server
+sudo systemctl status ts3server
+```
 
 
 <strong>Note:</strong> "SERVER" denotes the server name you set during install.<br/>
