@@ -20,7 +20,7 @@ Install
 
 #### Run the following one liner as root
 ```
-sudo adduser teamspeak
+adduser --disabled-login teamspeak
 ```
 ```
 su - teamspeak
